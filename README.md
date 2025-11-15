@@ -18,3 +18,4 @@ View your app in AI Studio: https://ai.studio/apps/drive/1sINiIM_Ls2ILGFB_kOJkep
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+4. Ask for supabase api and url or make one for yourself.
