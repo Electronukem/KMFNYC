@@ -1,21 +1,33 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Kiss My Face New York: AI Meme Generator
 
-# Run and deploy your AI Studio app
+A meme generator built for Kiss My Face New York, a NYC nightlife project. Enter a
+news headline, or paste Instagram posts as inspiration, and it drafts five topical
+memes for the team to approve or reject. Approved memes are saved and fed back to
+the model as examples, so later batches lean toward what the team actually liked.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/drive/1sINiIM_Ls2ILGFB_kOJkepqjt8a5x3VO
+- Captions and image prompts written by Gemini 2.5 Pro
+- Images from Gemini 2.5 Flash Image or OpenAI DALL·E 3
+- Approve, reject or regenerate each meme
+- Feedback loop: approved memes are stored in a Supabase `approved_memes` table and
+  included as examples in the next prompt; the app also tracks which image model
+  gets approved more often
+- Autopilot mode: generates a fresh batch once a day from saved inspiration
 
-## Run Locally
+## Tech
 
-**Prerequisites:**  Node.js
+React 19, TypeScript, Vite, Google Gemini API, OpenAI API, Supabase.
 
+## Run locally
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
-4. Ask for supabase api and url or make one for yourself.
+Requires Node.js, a Gemini API key, and (for the feedback loop) a Supabase project.
+
+```bash
+npm install
+echo "GEMINI_API_KEY=your-key" > .env.local
+npm run dev
+```
+
+The Supabase URL and anon key are entered in the app. The SQL that creates the
+`approved_memes` table is in `services/feedbackService.ts`.
